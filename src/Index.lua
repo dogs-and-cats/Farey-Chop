@@ -28,4 +28,4 @@ local start = os.clock()
 local x, y = farey_chop(input, count)
 
 print("took: ", os.clock() - start, "seconds.", "\n",
-    x, , "/", y)
+    x, "/", y)
