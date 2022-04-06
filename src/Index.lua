@@ -1,31 +1,31 @@
-local function Farey(Number, Iterations)
-    local Integer, Decimal = math.modf(Number)
+local function farey_chop(x, n)
+    local i, d = math.fmod(x)
 
-    local LowerRangeMin, LowerRangeMax = 0, 1
-    local UpperRangeMin, UpperRangeMax = 1, 1
+    local l_min, l_max = 0, 1
+    local u_min, u_max = 1, 1
 
-    local MediantMin, MediantMax = LowerRangeMin + UpperRangeMin, LowerRangeMax + UpperRangeMax
-    local MediantCompare = MediantMin / MediantMax
+    local m_min, m_max = l_min + u_min, l_max + u_max 
+    local m_c = m_min / m_max
 
-    for I = 1, Iterations do
-        if (Decimal < MediantCompare) then
-            UpperRangeMin, UpperRangeMax = MediantMin, MediantMax
-        elseif (Decimal > MediantCompare) then
-            LowerRangeMin, LowerRangeMax = MediantMin, MediantMax
+    local i = 0
+    while i < n and d ~= m_c do
+        if d < m_c then
+            u_min, u_max = m_min, m_max
+        else
+            l_min, l_max = m_min, m_max
         end
 
-        MediantMin, MediantMax = LowerRangeMin + UpperRangeMin, LowerRangeMax + UpperRangeMax
-        MediantCompare = MediantMin / MediantMax
+        i = i + 1
     end
 
-    return MediantMin + MediantMax * Integer, MediantMax
+    return m_min + m_max * i, m_max
 end
 
-local Input = io.read()
-local Iterations = io.read()
+local input = io.read()
+local count = io.read() + 0 -- abuse of type casting
 
-local Start = os.clock()
-local X, Y = Farey(Input, Iterations)
+local start = os.clock()
+local x, y = farey_chop(input, count)
 
-print("Took: ", os.clock() - Start, "seconds.")
-print(X .. "/" .. Y)
+print("took: ", os.clock() - start, "seconds.", "\n",
+    x, , "/", y)
