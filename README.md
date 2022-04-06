@@ -6,6 +6,6 @@ A [Binary Search](https://en.wikipedia.org/wiki/Binary_search_algorithm) based a
 $ lua ./src/farey.lua
 0.125
 10000
-Took: 0 seconds.
-output: 1/8
+took: 0 seconds.
+1/8
 ```
