@@ -3,7 +3,7 @@ A [Binary Search](https://en.wikipedia.org/wiki/Binary_search_algorithm) based a
 
 ### Example: 
 ```console
-$ lua ./src/Farey.lua
+$ lua ./src/farey.lua
 0.125
 10000
 Took: 0 seconds.
